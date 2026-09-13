@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Kufi+Arabic:wght@400;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+/* Sitely wireframe kit — low-fi, paper + ink, one warm accent.
+   Shared by every artboard; inlined at build time by build.mjs. */
+
+:root{
+  --ink:#171614; --paper:#FBFAF6; --card:#FFFFFF;
+  --line:#C5C0B6; --soft:#DFDBD2; --fill:#EDEAE3;
+  --muted:#7C776E; --accent:#9A6636; --flag:#A44E3C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Space Mono','SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--flag)}
+.hand{font-family:'Architects Daughter','Comic Sans MS',cursive}
+
+/* frame + surfaces */
+.wf{min-height:100%;background:var(--paper);padding:0}
+.box{border:1.5px solid var(--line);background:var(--card)}
+.sk{border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.dash{border:1.5px dashed var(--line)}
+.hr{height:1.5px;background:var(--soft);border:0;margin:0}
+
+/* typography */
+.t-screen{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:26px;line-height:1.1}
+.t-sec{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:16px}
+.t-lbl{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.t-sm{font-size:11px;color:var(--muted)}
+.b{font-weight:700}
+.mut{color:var(--muted)}
+.acc{color:var(--accent)}
+.flg{color:var(--flag)}
+
+/* placeholder image — dashed box with a crossed-out fill */
+.ph{border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:10px;text-align:center;padding:4px;
+  background:
+    linear-gradient(to top right,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    linear-gradient(to top left,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    var(--fill)}
+/* grey bars standing in for body copy */
+.bar{height:8px;border-radius:4px;background:var(--fill)}
+.bar.d{background:var(--soft)}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 14px;border:1.5px solid var(--ink);background:var(--card);
+  color:var(--ink);font:inherit;font-size:11px;border-radius:3px;white-space:nowrap}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gh{border-color:var(--line);color:var(--muted)}
+.btn.dis{border-color:var(--soft);color:#B6B1A8;background:var(--fill)}
+.btn.sm{height:26px;padding:0 10px;font-size:10px}
+.btn.tap{height:46px;font-size:13px}
+.fld{border:1.5px solid var(--line);background:var(--card);height:34px;display:flex;align-items:center;
+  padding:0 10px;color:var(--muted);font-size:11px;border-radius:3px}
+.fld.ta{height:auto;min-height:58px;align-items:flex-start;padding:9px 10px}
+.fld.err{border-color:var(--flag);color:var(--flag)}
+.fld.ok{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border:1.5px solid var(--line);
+  border-radius:11px;font-size:10px;color:var(--muted);background:var(--card);white-space:nowrap}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.chip.sq{border-radius:3px}
+.chip.warn{border-color:var(--flag);color:var(--flag)}
+.tog{width:34px;height:18px;border:1.5px solid var(--line);border-radius:9px;background:var(--fill);
+  display:flex;align-items:center;padding:0 2px;flex:none}
+.tog i{width:12px;height:12px;border-radius:50%;background:var(--muted);display:block}
+.tog.on{border-color:var(--accent);background:var(--accent);justify-content:flex-end}
+.tog.on i{background:#fff}
+.rad{width:14px;height:14px;border:1.5px solid var(--line);border-radius:50%;flex:none}
+.rad.on{border-color:var(--accent);border-width:4px}
+
+/* app chrome */
+.top{height:52px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1.5px solid var(--line);background:var(--card)}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:6px;display:flex;
+  align-items:center;justify-content:center;font-size:13px;flex:none}
+.nav{display:flex;flex-direction:column;gap:2px;padding:14px 10px}
+.nav a,.nav div.i{display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:3px;
+  color:var(--muted);font-size:11px}
+.nav .i.on{background:var(--fill);color:var(--ink);font-weight:700}
+
+/* wizard step rail */
+.steps{display:flex;align-items:center;gap:0;padding:0 20px;height:44px;border-bottom:1.5px solid var(--soft);background:var(--paper)}
+.step{display:flex;align-items:center;gap:7px;padding:0 16px 0 0;color:var(--muted);font-size:11px}
+.step b{width:20px;height:20px;border:1.5px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:400;flex:none}
+.step.done b{border-color:var(--accent);color:var(--accent)}
+.step.now{color:var(--ink)}
+.step.now b{background:var(--ink);border-color:var(--ink);color:#fff}
+.step s{width:14px;height:1.5px;background:var(--soft);text-decoration:none;flex:none;margin-right:16px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{text-align:start;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:7px 10px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1.5px solid var(--soft);vertical-align:middle}
+
+/* callouts: pencilled notes tying the frame back to the kickoff doc */
+.note{border:1.5px solid var(--flag);border-left-width:4px;background:#FDF6F3;padding:9px 11px;
+  font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:13px;color:var(--flag);line-height:1.3}
+.note.n{border-color:var(--accent);border-left-color:var(--accent);background:#FAF5EF;color:var(--accent)}
+.ref{font-family:'Space Mono',monospace;font-size:10px;opacity:.8}
+
+/* Arabic face — every template ships RTL from the first line of CSS, never retrofitted */
+.ar{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+  </style>
+</helmet>
+<div class="wf" style="width:1440px;height:900px;display:flex;flex-direction:column">
+
+  <div class="top">
+    <div class="mark hand">S</div>
+    <div class="b" style="font-size:13px">Barber Joe</div>
+    <div class="chip sq">barber-joe.sitelypages.com</div>
+    <div style="flex-grow:1"></div>
+    <div class="t-sm">saved 4s ago</div>
+    <div class="btn gh">Preview</div>
+    <div class="btn pri">Publish</div>
+  </div>
+
+  <div class="steps">
+    <div class="step done"><b>&#10003;</b>Category</div><s></s>
+    <div class="step now"><b>2</b>Template</div><s></s>
+    <div class="step done"><b>&#10003;</b>Palette</div><s></s>
+    <div class="step done"><b>&#10003;</b>Content</div><s></s>
+    <div class="step"><b>5</b>Preview</div><s></s>
+    <div class="step"><b>6</b>Publish</div>
+  </div>
+
+  <div style="flex-grow:1;padding:24px 32px;display:flex;flex-direction:column;gap:16px;min-height:0">
+
+    <div style="display:flex;align-items:flex-end;gap:14px">
+      <div>
+        <div class="t-screen">Choose a template</div>
+        <div class="t-sm" style="margin-top:4px">Layout and style only &mdash; switching never touches your content.</div>
+      </div>
+      <div style="flex-grow:1"></div>
+      <div class="box" style="padding:8px 12px;display:flex;align-items:center;gap:10px">
+        <span class="t-lbl">Your category needs</span>
+        <span class="chip on">priceList</span>
+        <span class="t-sm">+ optional</span>
+        <span class="chip">team</span><span class="chip">portfolio</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+
+      <!-- current -->
+      <div class="box" style="border-color:var(--ink);border-width:2.5px;display:flex;flex-direction:column">
+        <div class="ph" style="height:178px;border:0;border-bottom:2.5px solid var(--ink)">template thumbnail<br>1200&times;900</div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:8px;flex-grow:1">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="t-sec">Aurora</span><div style="flex-grow:1"></div><span class="chip on">current</span>
+          </div>
+          <div class="t-sm">Archetype B &middot; service-led. Price list leads, team below the fold.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span class="chip">priceList</span><span class="chip">team</span><span class="chip">portfolio</span><span class="chip">packages</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:auto">
+            <span class="chip sq">RTL</span><span class="chip sq">LCP 1.4s</span><span class="chip sq">JS 61 KB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- selectable -->
+      <div class="box" style="display:flex;flex-direction:column">
+        <div class="ph" style="height:178px;border:0;border-bottom:1.5px solid var(--line)">template thumbnail</div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:8px;flex-grow:1">
+          <div class="t-sec">Najd</div>
+          <div class="t-sm">Archetype B &middot; service-led. Dense single column, built for a long price list.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span class="chip">priceList</span><span class="chip">team</span><span class="chip">coverage</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:auto">
+            <span class="chip sq">RTL</span><span class="chip sq">LCP 1.1s</span><span class="chip sq">JS 48 KB</span>
+          </div>
+          <div class="btn sm" style="width:100%">Use this template</div>
+        </div>
+      </div>
+
+      <div class="box" style="display:flex;flex-direction:column">
+        <div class="ph" style="height:178px;border:0;border-bottom:1.5px solid var(--line)">template thumbnail</div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:8px;flex-grow:1">
+          <div style="display:flex;align-items:center;gap:8px"><span class="t-sec">Wadi</span><div style="flex-grow:1"></div><span class="chip sq">beta</span></div>
+          <div class="t-sm">Archetype B &middot; service-led. Photo-forward, for shops with real portfolio images.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span class="chip">priceList</span><span class="chip">portfolio</span><span class="chip">team</span>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:auto">
+            <span class="chip sq">RTL</span><span class="chip sq">LCP 1.8s</span><span class="chip sq">JS 74 KB</span>
+          </div>
+          <div class="btn sm" style="width:100%">Use this template</div>
+        </div>
+      </div>
+
+      <!-- blocked by the coverage rule -->
+      <div class="box" style="display:flex;flex-direction:column;background:var(--fill);border-style:dashed">
+        <div class="ph" style="height:178px;border:0;border-bottom:1.5px dashed var(--line);opacity:.55">template thumbnail</div>
+        <div style="padding:12px;display:flex;flex-direction:column;gap:8px;flex-grow:1">
+          <div style="display:flex;align-items:center;gap:8px"><span class="t-sec mut">Meridian</span><div style="flex-grow:1"></div><span class="chip warn">unavailable</span></div>
+          <div class="t-sm">Archetype C &middot; product-led.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span class="chip">showcase</span><span class="chip">packages</span>
+          </div>
+          <div class="box" style="border-color:var(--flag);padding:8px;margin-top:auto">
+            <div class="t-sm flg">Cannot render <span class="ref">priceList</span>, which your category requires.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px;align-items:stretch;margin-top:auto">
+      <div class="note" style="flex-grow:1">
+        Only templates whose <span class="ref">supportedModules</span> cover the category's required
+        modules are offered. The same rule runs in CI across every category &times; template pair &mdash;
+        that test is what stops a new category silently breaking a template later.
+        <div class="ref">&sect;5.8 validation rule</div>
+      </div>
+      <div class="note n" style="width:420px;flex:none">
+        18 templates cover ~45 categories because a template renders <span class="ref">modules</span>,
+        not a trade. Personality comes from palette, imagery and label overrides &mdash; reach for those
+        before a new template.
+        <div class="ref">&sect;5.6 &middot; &sect;14.1</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

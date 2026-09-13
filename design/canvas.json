@@ -1,0 +1,45 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "System map" },
+    { "id": "page-2", "name": "Owner editor" },
+    { "id": "page-3", "name": "Admin console" },
+    { "id": "page-4", "name": "Tenant sites" }
+  ],
+  "artboards": [
+    { "file": "SystemMap.dc.html", "page": "page-1", "x": 0, "y": 0, "w": 1680, "h": 1260 },
+
+    { "file": "Main.dc.html",           "page": "page-2", "x": 0,    "y": 0,    "w": 1440, "h": 980, "title": "Editor — content" },
+    { "file": "EditorTemplate.dc.html", "page": "page-2", "x": 1540, "y": 0,    "w": 1440, "h": 900 },
+    { "file": "EditorPalette.dc.html",  "page": "page-2", "x": 3080, "y": 0,    "w": 1440, "h": 900 },
+    { "file": "EditorPublish.dc.html",  "page": "page-2", "x": 0,    "y": 1120, "w": 1440, "h": 900 },
+    { "file": "OwnerDashboard.dc.html", "page": "page-2", "x": 1540, "y": 1120, "w": 1440, "h": 900 },
+
+    { "file": "AdminMetrics.dc.html",     "page": "page-3", "x": 0,    "y": 0,    "w": 1440, "h": 900 },
+    { "file": "AdminNewBusiness.dc.html", "page": "page-3", "x": 1540, "y": 0,    "w": 1440, "h": 900 },
+    { "file": "AdminLeads.dc.html",       "page": "page-3", "x": 0,    "y": 1040, "w": 1440, "h": 900 },
+    { "file": "AdminRegistry.dc.html",    "page": "page-3", "x": 1540, "y": 1040, "w": 1440, "h": 980 },
+
+    { "file": "SiteServiceLed.dc.html", "page": "page-4", "x": 0,   "y": 0, "w": 390, "h": 2100, "title": "Barber — archetype B, LTR" },
+    { "file": "SiteMenuLed.dc.html",    "page": "page-4", "x": 490, "y": 0, "w": 390, "h": 1980, "title": "Cafe — archetype A, RTL" },
+    { "file": "SiteStates.dc.html",     "page": "page-4", "x": 980, "y": 0, "w": 900, "h": 1020, "title": "Demo + dunning states" }
+  ],
+  "annotations": [
+    {
+      "id": "n-overview", "page": "page-1", "x": 0, "y": -200, "w": 900,
+      "text": "Wireframes for the kickoff doc, low fidelity on purpose — structure, flow and the rules that constrain them, not visual design.\nFour pages: this map, then the owner editor, the admin console, and the tenant sites the renderer serves.\nRed notes mark the decisions the doc says not to change without a very good reason."
+    },
+    {
+      "id": "n-editor", "page": "page-2", "x": 0, "y": -210, "w": 900,
+      "text": "Owner editor — phase 4, and the screen a customer actually lives in.\nCategory locks after first publish; template and palette stay switchable because a template may never invent a field.\nContent is one generated form, so a new category costs zero frontend work. Publish is the paywall, not the front door."
+    },
+    {
+      "id": "n-admin", "page": "page-3", "x": 0, "y": -210, "w": 900,
+      "text": "Admin console — your console, not a customer's. TOTP mandatory, impersonation read-only and audited.\nThe registry screen (bottom right) is phase 2 and the load-bearing one: get it right and categories 5 through 45 are configuration."
+    },
+    {
+      "id": "n-tenant", "page": "page-4", "x": 0, "y": -210, "w": 880,
+      "text": "Tenant sites — 90% of these visitors are on a mid-range Android, so these are the artboards that matter.\nShowcase only: call, WhatsApp, directions, contact form, external link. No cart, ever.\nRTL is the same template and the same JSON with dir flipped — built in from the first line of CSS, never retrofitted."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}

@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Kufi+Arabic:wght@400;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+/* Sitely wireframe kit — low-fi, paper + ink, one warm accent.
+   Shared by every artboard; inlined at build time by build.mjs. */
+
+:root{
+  --ink:#171614; --paper:#FBFAF6; --card:#FFFFFF;
+  --line:#C5C0B6; --soft:#DFDBD2; --fill:#EDEAE3;
+  --muted:#7C776E; --accent:#9A6636; --flag:#A44E3C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Space Mono','SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--flag)}
+.hand{font-family:'Architects Daughter','Comic Sans MS',cursive}
+
+/* frame + surfaces */
+.wf{min-height:100%;background:var(--paper);padding:0}
+.box{border:1.5px solid var(--line);background:var(--card)}
+.sk{border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.dash{border:1.5px dashed var(--line)}
+.hr{height:1.5px;background:var(--soft);border:0;margin:0}
+
+/* typography */
+.t-screen{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:26px;line-height:1.1}
+.t-sec{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:16px}
+.t-lbl{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.t-sm{font-size:11px;color:var(--muted)}
+.b{font-weight:700}
+.mut{color:var(--muted)}
+.acc{color:var(--accent)}
+.flg{color:var(--flag)}
+
+/* placeholder image — dashed box with a crossed-out fill */
+.ph{border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:10px;text-align:center;padding:4px;
+  background:
+    linear-gradient(to top right,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    linear-gradient(to top left,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    var(--fill)}
+/* grey bars standing in for body copy */
+.bar{height:8px;border-radius:4px;background:var(--fill)}
+.bar.d{background:var(--soft)}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 14px;border:1.5px solid var(--ink);background:var(--card);
+  color:var(--ink);font:inherit;font-size:11px;border-radius:3px;white-space:nowrap}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gh{border-color:var(--line);color:var(--muted)}
+.btn.dis{border-color:var(--soft);color:#B6B1A8;background:var(--fill)}
+.btn.sm{height:26px;padding:0 10px;font-size:10px}
+.btn.tap{height:46px;font-size:13px}
+.fld{border:1.5px solid var(--line);background:var(--card);height:34px;display:flex;align-items:center;
+  padding:0 10px;color:var(--muted);font-size:11px;border-radius:3px}
+.fld.ta{height:auto;min-height:58px;align-items:flex-start;padding:9px 10px}
+.fld.err{border-color:var(--flag);color:var(--flag)}
+.fld.ok{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border:1.5px solid var(--line);
+  border-radius:11px;font-size:10px;color:var(--muted);background:var(--card);white-space:nowrap}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.chip.sq{border-radius:3px}
+.chip.warn{border-color:var(--flag);color:var(--flag)}
+.tog{width:34px;height:18px;border:1.5px solid var(--line);border-radius:9px;background:var(--fill);
+  display:flex;align-items:center;padding:0 2px;flex:none}
+.tog i{width:12px;height:12px;border-radius:50%;background:var(--muted);display:block}
+.tog.on{border-color:var(--accent);background:var(--accent);justify-content:flex-end}
+.tog.on i{background:#fff}
+.rad{width:14px;height:14px;border:1.5px solid var(--line);border-radius:50%;flex:none}
+.rad.on{border-color:var(--accent);border-width:4px}
+
+/* app chrome */
+.top{height:52px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1.5px solid var(--line);background:var(--card)}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:6px;display:flex;
+  align-items:center;justify-content:center;font-size:13px;flex:none}
+.nav{display:flex;flex-direction:column;gap:2px;padding:14px 10px}
+.nav a,.nav div.i{display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:3px;
+  color:var(--muted);font-size:11px}
+.nav .i.on{background:var(--fill);color:var(--ink);font-weight:700}
+
+/* wizard step rail */
+.steps{display:flex;align-items:center;gap:0;padding:0 20px;height:44px;border-bottom:1.5px solid var(--soft);background:var(--paper)}
+.step{display:flex;align-items:center;gap:7px;padding:0 16px 0 0;color:var(--muted);font-size:11px}
+.step b{width:20px;height:20px;border:1.5px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:400;flex:none}
+.step.done b{border-color:var(--accent);color:var(--accent)}
+.step.now{color:var(--ink)}
+.step.now b{background:var(--ink);border-color:var(--ink);color:#fff}
+.step s{width:14px;height:1.5px;background:var(--soft);text-decoration:none;flex:none;margin-right:16px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{text-align:start;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:7px 10px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1.5px solid var(--soft);vertical-align:middle}
+
+/* callouts: pencilled notes tying the frame back to the kickoff doc */
+.note{border:1.5px solid var(--flag);border-left-width:4px;background:#FDF6F3;padding:9px 11px;
+  font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:13px;color:var(--flag);line-height:1.3}
+.note.n{border-color:var(--accent);border-left-color:var(--accent);background:#FAF5EF;color:var(--accent)}
+.ref{font-family:'Space Mono',monospace;font-size:10px;opacity:.8}
+
+/* Arabic face — every template ships RTL from the first line of CSS, never retrofitted */
+.ar{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+  </style>
+</helmet>
+<div class="wf" style="width:1680px;min-height:1260px;padding:30px 34px;display:flex;flex-direction:column;gap:18px">
+
+  <div style="display:flex;align-items:flex-end;gap:18px">
+    <div>
+      <div class="hand" style="font-size:36px;line-height:1.05">Sitely &mdash; what gets built, and in what order</div>
+      <div class="t-sm" style="margin-top:6px">Wireframe analysis of the technical kickoff v1.0 &middot; three deployables, one backend, one JSON document per customer.</div>
+    </div>
+    <div style="flex-grow:1"></div>
+    <div class="box" style="padding:11px 14px;display:flex;flex-direction:column;gap:3px">
+      <div class="t-lbl">The whole idea</div>
+      <div class="hand" style="font-size:17px">A site is data, not code.</div>
+      <div class="t-sm">New customer = an insert. New template = a component. Never a per-customer deploy.</div>
+    </div>
+  </div>
+
+  <!-- architecture -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">Control panel</span><span class="chip sq">Next.js</span>
+      </div>
+      <div class="t-sm">app.sitely.com</div>
+      <hr class="hr">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px"><span class="mut">/</span><span>marketing pages</span></div>
+        <div style="display:flex;gap:8px"><span class="mut">/login</span><span class="t-sm">no public signup</span></div>
+        <div style="display:flex;gap:8px"><span class="mut">/invite/:token</span><span class="t-sm">set first password</span></div>
+        <div style="display:flex;gap:8px"><span class="acc">/dashboard/*</span><span class="t-sm">OWNER &mdash; editor, stats, billing</span></div>
+        <div style="display:flex;gap:8px"><span class="acc">/admin/*</span><span class="t-sm">ADMIN &mdash; 2FA mandatory</span></div>
+      </div>
+      <div class="t-sm" style="margin-top:auto">Cookie <span class="ref">__Host-at</span>, host-only, no Domain attribute.</div>
+    </div>
+
+    <div style="width:26px;flex:none;display:flex;align-items:center;justify-content:center" class="mut">&rarr;</div>
+
+    <div class="box" style="width:400px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px;border-color:var(--ink);border-width:2.5px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">API</span><span class="chip sq">NestJS</span><span class="chip sq">BullMQ</span>
+      </div>
+      <div class="t-sm">api.sitely.com/v1</div>
+      <hr class="hr">
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span class="chip">auth</span><span class="chip">users</span><span class="chip">businesses</span><span class="chip">sites</span>
+        <span class="chip">categories</span><span class="chip">templates</span><span class="chip">media</span><span class="chip">billing</span>
+        <span class="chip">domains</span><span class="chip">leads</span><span class="chip">analytics</span><span class="chip">webhooks</span><span class="chip">jobs</span>
+      </div>
+      <div class="t-sm">One backend, two frontends, real background workers and cron &mdash; none of which belong in a serverless Next runtime.</div>
+      <hr class="hr">
+      <div style="display:flex;gap:8px">
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">MongoDB</div><div class="t-sm">Atlas</div></div>
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">Redis</div><div class="t-sm">cache + queue</div></div>
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">R2</div><div class="t-sm">media + CDN</div></div>
+      </div>
+    </div>
+
+    <div style="width:26px;flex:none;display:flex;align-items:center;justify-content:center" class="mut">&rarr;</div>
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">Renderer</span><span class="chip sq">Next.js</span><span class="chip sq">ISR</span>
+      </div>
+      <div class="t-sm">*.sitelypages.com</div>
+      <hr class="hr">
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div class="box" style="padding:8px 10px"><div class="b">middleware</div><div class="t-sm">host &rarr; <span class="ref">sub:</span> or <span class="ref">domain:</span> key</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:8px 10px"><div class="b">/_sites/[key]</div><div class="t-sm">Redis &rarr; Mongo, two fetches max</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:8px 10px"><div class="b">template + palette</div><div class="t-sm">cached by tag <span class="ref">site:&lt;id&gt;</span></div></div>
+      </div>
+      <div class="t-sm" style="margin-top:auto">Budget: LCP &lt; 2.0s on 4G, JS &lt; 90 KB. Enforced in CI.</div>
+    </div>
+  </div>
+
+  <div class="note" style="font-size:15px">
+    The renderer lives on a different <b>registrable domain</b>, not just a different subdomain. Set an
+    auth cookie on <span class="ref">.sitely.com</span> and every tenant subdomain receives it &mdash; then
+    any XSS on any customer site, including content they typed themselves, is account takeover on your
+    admin. Two domains makes that structurally impossible.
+    <div class="ref">&sect;2 &mdash; the single highest-value security decision in the document</div>
+  </div>
+
+  <!-- the content model -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:11px">
+      <div class="t-sec">Four layers &mdash; why 45 categories is affordable</div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--accent)">
+          <div class="b acc">module</div><div class="t-sm">a reusable block of fields</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">category</div><div class="t-sm">picks which modules apply</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">template</div><div class="t-sm">layout and style</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">palette</div><div class="t-sm">seven colour tokens</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span class="chip">menu</span><span class="chip">priceList</span><span class="chip">showcase</span><span class="chip">team</span>
+        <span class="chip">portfolio</span><span class="chip">schedule</span><span class="chip">listings</span><span class="chip">packages</span>
+        <span class="chip">credentials</span><span class="chip">coverage</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">10</div><div class="t-sm">modules</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">6</div><div class="t-sm">archetypes</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">18</div><div class="t-sm">templates</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">~45</div><div class="t-sm">categories</div></div>
+      </div>
+      <div class="t-sm">A template may never invent a field. That is what lets a customer switch templates without losing content &mdash; and it is why the naive model's 225 templates collapse to 18.</div>
+    </div>
+
+    <div class="box" style="width:430px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div class="t-sec">Onboarding &mdash; no public signup</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="box" style="padding:9px 11px"><div class="b">Admin creates the business</div><div class="t-sm">business + owner + two site docs + invite, one transaction</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px"><div class="b">Owner accepts the invite</div><div class="t-sm">72h single-use link, sets first password</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px;border-color:var(--accent)"><div class="b acc">Editor opens &mdash; unpaid</div><div class="t-sm">category, template, palette, content, preview: all free</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px;border-color:var(--ink);border-width:2.5px"><div class="b">Publish is the paywall</div><div class="t-sm">the demo does the selling</div></div>
+      </div>
+      <div class="note n" style="margin-top:auto">
+        Paying before seeing the editor is a hard ask from a barber who has never bought software.
+        The friction worth removing is &ldquo;I can't see what I'm buying&rdquo;.
+        <div class="ref">&sect;8.1</div>
+      </div>
+    </div>
+
+    <div class="box" style="width:370px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div class="t-sec">Publish, in five seconds</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:9px"><span class="b acc">1</span><div><div class="b">Validate</div><div class="t-sm">against the category schema</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">2</span><div><div class="b">Assert coverage</div><div class="t-sm">template renders every populated module</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">3</span><div><div class="b">Archive</div><div class="t-sm">live doc &rarr; siteVersions</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">4</span><div><div class="b">Snapshot</div><div class="t-sm">DRAFT &rarr; PUBLISHED, version++</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b flg">5</span><div><div class="b flg">Invalidate, after commit</div><div class="t-sm">Redis DEL &rarr; revalidateTag &rarr; CDN purge &rarr; warm</div></div></div>
+      </div>
+      <div class="note" style="margin-top:auto">
+        Never invalidate inside the transaction. Draft and published are two documents so editing can
+        never touch what the public sees.
+        <div class="ref">&sect;8.2 &middot; &sect;4.5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- build order + risks -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:11px">
+      <div class="t-sec">Build order &mdash; where these screens land</div>
+      <div style="display:flex;gap:7px;align-items:stretch">
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">0&ndash;1</div><div class="b">Foundation, auth</div><div class="t-sm">monorepo, RBAC, refresh rotation</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--ink);border-width:2.5px"><div class="t-lbl">2</div><div class="b">Schema engine</div><div class="t-sm">registry + &lt;SchemaField&gt;</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">3</div><div class="b">Renderer</div><div class="t-sm">host middleware, ISR</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--ink);border-width:2.5px"><div class="t-lbl">4</div><div class="b">Editor</div><div class="t-sm">wizard, media, publish</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">5&ndash;6</div><div class="b">Templates, billing</div><div class="t-sm">wave 1, Mada recurring</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">7&ndash;8</div><div class="b">Leads, analytics</div><div class="t-sm">demo job, stats email</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;background:var(--fill)"><div class="t-lbl">9</div><div class="b mut">Custom domains</div><div class="t-sm">only after 20 paying</div></div>
+      </div>
+      <div class="t-sm">Launch with four categories and four templates &mdash; barber, ladies salon, restaurant, cafe. The architecture supports 45 on day one; the calendar does not.</div>
+    </div>
+
+    <div class="box" style="width:430px;flex:none;padding:15px;display:flex;flex-direction:column;gap:9px;border-color:var(--flag)">
+      <div class="t-sec flg">The three things most likely to kill it</div>
+      <div style="display:flex;gap:9px"><span class="b flg">1</span><div><div class="b">Template sprawl</div><div class="t-sm">Adding a category should be free. Adding a template never is.</div></div></div>
+      <div style="display:flex;gap:9px"><span class="b flg">2</span><div><div class="b">Support load</div><div class="t-sm">Constrain the editor until ugly is hard to produce.</div></div></div>
+      <div style="display:flex;gap:9px"><span class="b flg">3</span><div><div class="b">Churn at month three</div><div class="t-sm">The monthly &ldquo;47 calls&rdquo; email is the defence. Ship it in v1.</div></div></div>
+      <div class="ref" style="margin-top:auto">&sect;14</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Kufi+Arabic:wght@400;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+/* Sitely wireframe kit — low-fi, paper + ink, one warm accent.
+   Shared by every artboard; inlined at build time by build.mjs. */
+
+:root{
+  --ink:#171614; --paper:#FBFAF6; --card:#FFFFFF;
+  --line:#C5C0B6; --soft:#DFDBD2; --fill:#EDEAE3;
+  --muted:#7C776E; --accent:#9A6636; --flag:#A44E3C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Space Mono','SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--flag)}
+.hand{font-family:'Architects Daughter','Comic Sans MS',cursive}
+
+/* frame + surfaces */
+.wf{min-height:100%;background:var(--paper);padding:0}
+.box{border:1.5px solid var(--line);background:var(--card)}
+.sk{border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.dash{border:1.5px dashed var(--line)}
+.hr{height:1.5px;background:var(--soft);border:0;margin:0}
+
+/* typography */
+.t-screen{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:26px;line-height:1.1}
+.t-sec{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:16px}
+.t-lbl{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.t-sm{font-size:11px;color:var(--muted)}
+.b{font-weight:700}
+.mut{color:var(--muted)}
+.acc{color:var(--accent)}
+.flg{color:var(--flag)}
+
+/* placeholder image — dashed box with a crossed-out fill */
+.ph{border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:10px;text-align:center;padding:4px;
+  background:
+    linear-gradient(to top right,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    linear-gradient(to top left,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    var(--fill)}
+/* grey bars standing in for body copy */
+.bar{height:8px;border-radius:4px;background:var(--fill)}
+.bar.d{background:var(--soft)}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 14px;border:1.5px solid var(--ink);background:var(--card);
+  color:var(--ink);font:inherit;font-size:11px;border-radius:3px;white-space:nowrap}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gh{border-color:var(--line);color:var(--muted)}
+.btn.dis{border-color:var(--soft);color:#B6B1A8;background:var(--fill)}
+.btn.sm{height:26px;padding:0 10px;font-size:10px}
+.btn.tap{height:46px;font-size:13px}
+.fld{border:1.5px solid var(--line);background:var(--card);height:34px;display:flex;align-items:center;
+  padding:0 10px;color:var(--muted);font-size:11px;border-radius:3px}
+.fld.ta{height:auto;min-height:58px;align-items:flex-start;padding:9px 10px}
+.fld.err{border-color:var(--flag);color:var(--flag)}
+.fld.ok{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border:1.5px solid var(--line);
+  border-radius:11px;font-size:10px;color:var(--muted);background:var(--card);white-space:nowrap}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.chip.sq{border-radius:3px}
+.chip.warn{border-color:var(--flag);color:var(--flag)}
+.tog{width:34px;height:18px;border:1.5px solid var(--line);border-radius:9px;background:var(--fill);
+  display:flex;align-items:center;padding:0 2px;flex:none}
+.tog i{width:12px;height:12px;border-radius:50%;background:var(--muted);display:block}
+.tog.on{border-color:var(--accent);background:var(--accent);justify-content:flex-end}
+.tog.on i{background:#fff}
+.rad{width:14px;height:14px;border:1.5px solid var(--line);border-radius:50%;flex:none}
+.rad.on{border-color:var(--accent);border-width:4px}
+
+/* app chrome */
+.top{height:52px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1.5px solid var(--line);background:var(--card)}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:6px;display:flex;
+  align-items:center;justify-content:center;font-size:13px;flex:none}
+.nav{display:flex;flex-direction:column;gap:2px;padding:14px 10px}
+.nav a,.nav div.i{display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:3px;
+  color:var(--muted);font-size:11px}
+.nav .i.on{background:var(--fill);color:var(--ink);font-weight:700}
+
+/* wizard step rail */
+.steps{display:flex;align-items:center;gap:0;padding:0 20px;height:44px;border-bottom:1.5px solid var(--soft);background:var(--paper)}
+.step{display:flex;align-items:center;gap:7px;padding:0 16px 0 0;color:var(--muted);font-size:11px}
+.step b{width:20px;height:20px;border:1.5px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:400;flex:none}
+.step.done b{border-color:var(--accent);color:var(--accent)}
+.step.now{color:var(--ink)}
+.step.now b{background:var(--ink);border-color:var(--ink);color:#fff}
+.step s{width:14px;height:1.5px;background:var(--soft);text-decoration:none;flex:none;margin-right:16px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{text-align:start;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:7px 10px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1.5px solid var(--soft);vertical-align:middle}
+
+/* callouts: pencilled notes tying the frame back to the kickoff doc */
+.note{border:1.5px solid var(--flag);border-left-width:4px;background:#FDF6F3;padding:9px 11px;
+  font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:13px;color:var(--flag);line-height:1.3}
+.note.n{border-color:var(--accent);border-left-color:var(--accent);background:#FAF5EF;color:var(--accent)}
+.ref{font-family:'Space Mono',monospace;font-size:10px;opacity:.8}
+
+/* Arabic face — every template ships RTL from the first line of CSS, never retrofitted */
+.ar{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+  </style>
+</helmet>
+<div class="wf" style="width:1440px;height:900px;display:flex;flex-direction:column">
+
+  <div class="top">
+    <div class="mark hand">S</div>
+    <div class="b" style="font-size:13px">Barber Joe</div>
+    <div class="chip sq">barber-joe.sitelypages.com</div>
+    <div style="flex-grow:1"></div>
+    <div class="t-sm">saved 1s ago</div>
+    <div class="btn gh">Preview</div>
+    <div class="btn pri">Publish</div>
+  </div>
+
+  <div class="steps">
+    <div class="step done"><b>&#10003;</b>Category</div><s></s>
+    <div class="step done"><b>&#10003;</b>Template</div><s></s>
+    <div class="step now"><b>3</b>Palette</div><s></s>
+    <div class="step done"><b>&#10003;</b>Content</div><s></s>
+    <div class="step"><b>5</b>Preview</div><s></s>
+    <div class="step"><b>6</b>Publish</div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+
+    <div style="flex-grow:1;min-width:0;padding:24px 28px;display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div class="t-screen">Colours</div>
+        <div class="t-sm" style="margin-top:4px">Eight palettes, seven tokens each. Templates reference the tokens, never a hex.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+
+        <!-- selected -->
+        <div class="box" style="border-color:var(--ink);border-width:2.5px;padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="rad on"></span><span class="b">Warm Sand</span>
+            <div style="flex-grow:1"></div><span class="chip on">AA &#10003;</span>
+          </div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#8B5E34;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#2E2A27;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#D9A441;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FBF8F4;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1C1917;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#78716C;border:1px solid var(--line)"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px" class="ref">
+            <span class="mut">primary</span><span class="mut">secondary</span><span class="mut">accent</span><span class="mut">bg</span>
+            <span class="mut">surface</span><span class="mut">text</span><span class="mut">muted</span><span></span>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Desert Clay</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#A65B3E;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#33251F;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#E0A277;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FDF6F2;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#241A16;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#8A7169;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Olive Stone</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#5F6B4A;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#2A2E24;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#A8B384;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#F7F8F2;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1B1E16;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#757A68;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Midnight Souq</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#C9A227;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#0E1116;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#6E8BA8;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#101418;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1A1F26;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#F2EFE8;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#9AA3AE;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Pearl</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#3F4A5A;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1B1F26;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#9AA9BD;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#F8F9FB;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#14171C;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#6E7885;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Date Syrup</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#6B3A2E;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#2B1A15;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#C98A4B;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FAF4EE;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1E1310;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#857068;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Sea Glass</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#2F6F6B;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1A2A29;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#7FB8AF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#F2F8F7;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#122020;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#6B8481;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:12px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="rad"></span><span class="b">Charcoal</span>
+            <div style="flex-grow:1"></div><span class="chip">AA &#10003;</span></div>
+          <div style="display:flex;gap:4px">
+            <div style="flex-grow:1;height:38px;background:#454545;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#1A1A1A;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#B08968;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#F6F5F3;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#FFFFFF;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#161616;border:1px solid var(--line)"></div>
+            <div style="flex-grow:1;height:38px;background:#757575;border:1px solid var(--line)"></div>
+          </div>
+        </div>
+
+        <!-- gated -->
+        <div class="box dash" style="padding:12px;display:flex;flex-direction:column;gap:9px;background:var(--fill)">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="mut">&#128274;</span><span class="b mut">Custom colours</span>
+            <div style="flex-grow:1"></div><span class="chip">Pro</span>
+          </div>
+          <div class="t-sm">Seven hex values of their own, contrast-checked on save.</div>
+          <div class="t-sm">Off the base tier on purpose: customers pick bad colours, then blame the product.</div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:auto">
+        A palette that fails WCAG AA never ships &mdash; contrast is validated at build time, not left to
+        the customer. Templates use the seven variables only; a hard-coded hex is a review failure.
+        <div class="ref">&sect;5.9</div>
+      </div>
+    </div>
+
+    <!-- live preview -->
+    <div style="width:400px;flex:none;border-inline-start:1.5px solid var(--line);background:var(--card);
+                padding:18px 16px;display:flex;flex-direction:column;gap:12px">
+      <div class="t-sec">Applied to Aurora</div>
+      <div class="box" style="padding:0;overflow:hidden">
+        <div style="background:#2E2A27;height:118px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;gap:7px">
+          <div style="height:11px;width:72%;background:#FBF8F4;border-radius:3px"></div>
+          <div style="height:7px;width:52%;background:#78716C;border-radius:3px"></div>
+          <div style="display:flex;gap:6px;margin-top:4px">
+            <div style="height:26px;width:92px;background:#D9A441;border-radius:3px"></div>
+            <div style="height:26px;width:92px;border:1.5px solid #FBF8F4;border-radius:3px"></div>
+          </div>
+        </div>
+        <div style="background:#FBF8F4;padding:14px;display:flex;flex-direction:column;gap:9px">
+          <div style="height:8px;width:38%;background:#8B5E34;border-radius:3px"></div>
+          <div style="display:flex;justify-content:space-between;gap:10px">
+            <div style="height:7px;width:52%;background:#1C1917;border-radius:3px;opacity:.75"></div>
+            <div style="height:7px;width:18%;background:#8B5E34;border-radius:3px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:10px">
+            <div style="height:7px;width:44%;background:#1C1917;border-radius:3px;opacity:.75"></div>
+            <div style="height:7px;width:18%;background:#8B5E34;border-radius:3px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:10px">
+            <div style="height:7px;width:58%;background:#1C1917;border-radius:3px;opacity:.75"></div>
+            <div style="height:7px;width:18%;background:#8B5E34;border-radius:3px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-lbl" style="margin-top:6px">Contrast report</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between"><span class="t-sm">text on bg</span><span class="chip on">14.6 &middot; AAA</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="t-sm">text on surface</span><span class="chip on">15.9 &middot; AAA</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="t-sm">white on primary</span><span class="chip on">5.4 &middot; AA</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="t-sm">text on accent</span><span class="chip on">7.8 &middot; AAA</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="t-sm">muted on bg</span><span class="chip on">4.6 &middot; AA</span></div>
+      </div>
+
+      <div class="note n" style="margin-top:auto">
+        Category seeds the shortlist (<span class="ref">defaultPaletteKeys</span>) and the template may
+        narrow it (<span class="ref">allowedPaletteKeys</span>) &mdash; so a palette can never land on a
+        template that was never designed for it.
+        <div class="ref">&sect;4.4 &middot; &sect;5.8</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

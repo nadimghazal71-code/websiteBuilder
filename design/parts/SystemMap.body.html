@@ -1,0 +1,176 @@
+<div class="wf" style="width:1680px;min-height:1260px;padding:30px 34px;display:flex;flex-direction:column;gap:18px">
+
+  <div style="display:flex;align-items:flex-end;gap:18px">
+    <div>
+      <div class="hand" style="font-size:36px;line-height:1.05">Sitely &mdash; what gets built, and in what order</div>
+      <div class="t-sm" style="margin-top:6px">Wireframe analysis of the technical kickoff v1.0 &middot; three deployables, one backend, one JSON document per customer.</div>
+    </div>
+    <div style="flex-grow:1"></div>
+    <div class="box" style="padding:11px 14px;display:flex;flex-direction:column;gap:3px">
+      <div class="t-lbl">The whole idea</div>
+      <div class="hand" style="font-size:17px">A site is data, not code.</div>
+      <div class="t-sm">New customer = an insert. New template = a component. Never a per-customer deploy.</div>
+    </div>
+  </div>
+
+  <!-- architecture -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">Control panel</span><span class="chip sq">Next.js</span>
+      </div>
+      <div class="t-sm">app.sitely.com</div>
+      <hr class="hr">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:8px"><span class="mut">/</span><span>marketing pages</span></div>
+        <div style="display:flex;gap:8px"><span class="mut">/login</span><span class="t-sm">no public signup</span></div>
+        <div style="display:flex;gap:8px"><span class="mut">/invite/:token</span><span class="t-sm">set first password</span></div>
+        <div style="display:flex;gap:8px"><span class="acc">/dashboard/*</span><span class="t-sm">OWNER &mdash; editor, stats, billing</span></div>
+        <div style="display:flex;gap:8px"><span class="acc">/admin/*</span><span class="t-sm">ADMIN &mdash; 2FA mandatory</span></div>
+      </div>
+      <div class="t-sm" style="margin-top:auto">Cookie <span class="ref">__Host-at</span>, host-only, no Domain attribute.</div>
+    </div>
+
+    <div style="width:26px;flex:none;display:flex;align-items:center;justify-content:center" class="mut">&rarr;</div>
+
+    <div class="box" style="width:400px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px;border-color:var(--ink);border-width:2.5px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">API</span><span class="chip sq">NestJS</span><span class="chip sq">BullMQ</span>
+      </div>
+      <div class="t-sm">api.sitely.com/v1</div>
+      <hr class="hr">
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span class="chip">auth</span><span class="chip">users</span><span class="chip">businesses</span><span class="chip">sites</span>
+        <span class="chip">categories</span><span class="chip">templates</span><span class="chip">media</span><span class="chip">billing</span>
+        <span class="chip">domains</span><span class="chip">leads</span><span class="chip">analytics</span><span class="chip">webhooks</span><span class="chip">jobs</span>
+      </div>
+      <div class="t-sm">One backend, two frontends, real background workers and cron &mdash; none of which belong in a serverless Next runtime.</div>
+      <hr class="hr">
+      <div style="display:flex;gap:8px">
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">MongoDB</div><div class="t-sm">Atlas</div></div>
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">Redis</div><div class="t-sm">cache + queue</div></div>
+        <div class="box" style="flex-grow:1;padding:8px;text-align:center"><div class="b">R2</div><div class="t-sm">media + CDN</div></div>
+      </div>
+    </div>
+
+    <div style="width:26px;flex:none;display:flex;align-items:center;justify-content:center" class="mut">&rarr;</div>
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:9px">
+        <span class="t-sec">Renderer</span><span class="chip sq">Next.js</span><span class="chip sq">ISR</span>
+      </div>
+      <div class="t-sm">*.sitelypages.com</div>
+      <hr class="hr">
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div class="box" style="padding:8px 10px"><div class="b">middleware</div><div class="t-sm">host &rarr; <span class="ref">sub:</span> or <span class="ref">domain:</span> key</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:8px 10px"><div class="b">/_sites/[key]</div><div class="t-sm">Redis &rarr; Mongo, two fetches max</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:8px 10px"><div class="b">template + palette</div><div class="t-sm">cached by tag <span class="ref">site:&lt;id&gt;</span></div></div>
+      </div>
+      <div class="t-sm" style="margin-top:auto">Budget: LCP &lt; 2.0s on 4G, JS &lt; 90 KB. Enforced in CI.</div>
+    </div>
+  </div>
+
+  <div class="note" style="font-size:15px">
+    The renderer lives on a different <b>registrable domain</b>, not just a different subdomain. Set an
+    auth cookie on <span class="ref">.sitely.com</span> and every tenant subdomain receives it &mdash; then
+    any XSS on any customer site, including content they typed themselves, is account takeover on your
+    admin. Two domains makes that structurally impossible.
+    <div class="ref">&sect;2 &mdash; the single highest-value security decision in the document</div>
+  </div>
+
+  <!-- the content model -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:11px">
+      <div class="t-sec">Four layers &mdash; why 45 categories is affordable</div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--accent)">
+          <div class="b acc">module</div><div class="t-sm">a reusable block of fields</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">category</div><div class="t-sm">picks which modules apply</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">template</div><div class="t-sm">layout and style</div>
+        </div><span class="mut">&rarr;</span>
+        <div class="box" style="flex-grow:1;padding:9px">
+          <div class="b">palette</div><div class="t-sm">seven colour tokens</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span class="chip">menu</span><span class="chip">priceList</span><span class="chip">showcase</span><span class="chip">team</span>
+        <span class="chip">portfolio</span><span class="chip">schedule</span><span class="chip">listings</span><span class="chip">packages</span>
+        <span class="chip">credentials</span><span class="chip">coverage</span>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">10</div><div class="t-sm">modules</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">6</div><div class="t-sm">archetypes</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">18</div><div class="t-sm">templates</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;text-align:center"><div class="hand" style="font-size:24px">~45</div><div class="t-sm">categories</div></div>
+      </div>
+      <div class="t-sm">A template may never invent a field. That is what lets a customer switch templates without losing content &mdash; and it is why the naive model's 225 templates collapse to 18.</div>
+    </div>
+
+    <div class="box" style="width:430px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div class="t-sec">Onboarding &mdash; no public signup</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="box" style="padding:9px 11px"><div class="b">Admin creates the business</div><div class="t-sm">business + owner + two site docs + invite, one transaction</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px"><div class="b">Owner accepts the invite</div><div class="t-sm">72h single-use link, sets first password</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px;border-color:var(--accent)"><div class="b acc">Editor opens &mdash; unpaid</div><div class="t-sm">category, template, palette, content, preview: all free</div></div>
+        <div style="text-align:center" class="mut">&darr;</div>
+        <div class="box" style="padding:9px 11px;border-color:var(--ink);border-width:2.5px"><div class="b">Publish is the paywall</div><div class="t-sm">the demo does the selling</div></div>
+      </div>
+      <div class="note n" style="margin-top:auto">
+        Paying before seeing the editor is a hard ask from a barber who has never bought software.
+        The friction worth removing is &ldquo;I can't see what I'm buying&rdquo;.
+        <div class="ref">&sect;8.1</div>
+      </div>
+    </div>
+
+    <div class="box" style="width:370px;flex:none;padding:15px;display:flex;flex-direction:column;gap:10px">
+      <div class="t-sec">Publish, in five seconds</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;gap:9px"><span class="b acc">1</span><div><div class="b">Validate</div><div class="t-sm">against the category schema</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">2</span><div><div class="b">Assert coverage</div><div class="t-sm">template renders every populated module</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">3</span><div><div class="b">Archive</div><div class="t-sm">live doc &rarr; siteVersions</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b acc">4</span><div><div class="b">Snapshot</div><div class="t-sm">DRAFT &rarr; PUBLISHED, version++</div></div></div>
+        <div style="display:flex;gap:9px"><span class="b flg">5</span><div><div class="b flg">Invalidate, after commit</div><div class="t-sm">Redis DEL &rarr; revalidateTag &rarr; CDN purge &rarr; warm</div></div></div>
+      </div>
+      <div class="note" style="margin-top:auto">
+        Never invalidate inside the transaction. Draft and published are two documents so editing can
+        never touch what the public sees.
+        <div class="ref">&sect;8.2 &middot; &sect;4.5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- build order + risks -->
+  <div style="display:flex;gap:14px;align-items:stretch">
+    <div class="box" style="flex-grow:1;padding:15px;display:flex;flex-direction:column;gap:11px">
+      <div class="t-sec">Build order &mdash; where these screens land</div>
+      <div style="display:flex;gap:7px;align-items:stretch">
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">0&ndash;1</div><div class="b">Foundation, auth</div><div class="t-sm">monorepo, RBAC, refresh rotation</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--ink);border-width:2.5px"><div class="t-lbl">2</div><div class="b">Schema engine</div><div class="t-sm">registry + &lt;SchemaField&gt;</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">3</div><div class="b">Renderer</div><div class="t-sm">host middleware, ISR</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;border-color:var(--ink);border-width:2.5px"><div class="t-lbl">4</div><div class="b">Editor</div><div class="t-sm">wizard, media, publish</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">5&ndash;6</div><div class="b">Templates, billing</div><div class="t-sm">wave 1, Mada recurring</div></div>
+        <div class="box" style="flex-grow:1;padding:9px"><div class="t-lbl">7&ndash;8</div><div class="b">Leads, analytics</div><div class="t-sm">demo job, stats email</div></div>
+        <div class="box" style="flex-grow:1;padding:9px;background:var(--fill)"><div class="t-lbl">9</div><div class="b mut">Custom domains</div><div class="t-sm">only after 20 paying</div></div>
+      </div>
+      <div class="t-sm">Launch with four categories and four templates &mdash; barber, ladies salon, restaurant, cafe. The architecture supports 45 on day one; the calendar does not.</div>
+    </div>
+
+    <div class="box" style="width:430px;flex:none;padding:15px;display:flex;flex-direction:column;gap:9px;border-color:var(--flag)">
+      <div class="t-sec flg">The three things most likely to kill it</div>
+      <div style="display:flex;gap:9px"><span class="b flg">1</span><div><div class="b">Template sprawl</div><div class="t-sm">Adding a category should be free. Adding a template never is.</div></div></div>
+      <div style="display:flex;gap:9px"><span class="b flg">2</span><div><div class="b">Support load</div><div class="t-sm">Constrain the editor until ugly is hard to produce.</div></div></div>
+      <div style="display:flex;gap:9px"><span class="b flg">3</span><div><div class="b">Churn at month three</div><div class="t-sm">The monthly &ldquo;47 calls&rdquo; email is the defence. Ship it in v1.</div></div></div>
+      <div class="ref" style="margin-top:auto">&sect;14</div>
+    </div>
+  </div>
+</div>

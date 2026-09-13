@@ -1,0 +1,206 @@
+<div class="wf" style="width:1440px;height:980px;display:flex;flex-direction:column">
+
+  <div class="top" style="background:var(--fill)">
+    <div class="mark hand">S</div>
+    <div class="b" style="font-size:13px">Admin console</div>
+    <div class="mut">/</div><div class="mut">Categories</div><div class="mut">/</div><div>barber</div>
+    <div style="flex-grow:1"></div>
+    <div class="chip sq">schemaVersion 3</div>
+    <div class="chip warn">unpublished changes</div>
+    <div class="t-sm">nadim &middot; SUPER_ADMIN</div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+
+    <div style="width:206px;flex:none;border-inline-end:1.5px solid var(--line);background:var(--card)">
+      <div class="nav">
+        <div class="i">Metrics</div>
+        <div class="i">Businesses</div>
+        <div class="i">Leads</div>
+        <div class="i on">Categories</div>
+        <div class="i">Templates</div>
+        <div class="i">Audit log</div>
+      </div>
+      <hr class="hr" style="margin:6px 12px">
+      <div class="nav">
+        <div class="t-lbl" style="padding:4px 10px">Modules</div>
+        <div class="i">priceList</div>
+        <div class="i">menu</div>
+        <div class="i">showcase</div>
+        <div class="i">team</div>
+        <div class="i">portfolio</div>
+        <div class="i">schedule</div>
+        <div class="i">listings</div>
+        <div class="i">packages</div>
+        <div class="i">credentials</div>
+        <div class="i">coverage</div>
+      </div>
+    </div>
+
+    <div style="flex-grow:1;min-width:0;padding:20px 24px;display:flex;gap:20px;min-height:0">
+
+      <!-- manifest -->
+      <div style="flex-grow:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div class="t-screen">barber</div>
+          <div class="t-sm" style="margin-top:4px">A category is a manifest &mdash; which modules, what this trade calls them, what the defaults are.</div>
+        </div>
+
+        <div class="box" style="padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">key <span class="mut">immutable</span></div>
+            <div class="fld" style="background:var(--fill)">barber</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">name.en</div><div class="fld" style="color:var(--ink)">Barbershop</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">name.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1581;&#1604;&#1575;&#1602;</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">archetype</div>
+            <div class="fld" style="color:var(--ink);justify-content:space-between">B &middot; service-led <span class="mut">&#9662;</span></div>
+          </div>
+        </div>
+
+        <div class="box" style="display:flex;flex-direction:column;flex-grow:1;min-height:0">
+          <div style="padding:12px 14px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;gap:10px">
+            <span class="t-sec">Modules</span>
+            <span class="t-sm">drag to reorder &mdash; order is the order on the site</span>
+          </div>
+
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">priceList</span><span class="chip on">required</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 1</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Services</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1575;&#1604;&#1582;&#1583;&#1605;&#1575;&#1578;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">team</span><span class="chip">optional &middot; off by default</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 2</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Our barbers</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1575;&#1604;&#1581;&#1604;&#1575;&#1602;&#1608;&#1606;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">portfolio</span><span class="chip">optional</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 3</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Before &amp; after</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">config.mode</div>
+                    <div class="fld" style="color:var(--ink);justify-content:space-between">beforeAfter <span class="mut">&#9662;</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="dash" style="padding:11px;display:flex;align-items:center;gap:9px;background:var(--fill)">
+              <span class="t-sm">Drag another module in &mdash;</span>
+              <span class="chip">packages</span><span class="chip">credentials</span><span class="chip">coverage</span>
+              <span class="chip">schedule</span><span class="chip">showcase</span>
+              <div style="flex-grow:1"></div>
+              <span class="t-sm">a category runs on 2&ndash;4</span>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span class="t-sec">extraFields</span><span class="t-sm">the small trade-specific bits</span>
+              <div style="flex-grow:1"></div><span class="btn sm gh">+ Field</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px">
+              <span class="chip sq">booking.mode <span class="mut">select</span></span>
+              <span class="chip sq">amenities <span class="mut">multi</span></span>
+              <span class="chip sq">kidsWelcome <span class="mut">boolean</span></span>
+            </div>
+            <div class="t-sm">Field types are a closed list. If a category wants something outside it, that is a product decision, not a quick add.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- compatibility + publish -->
+      <div style="width:404px;flex:none;display:flex;flex-direction:column;gap:13px">
+
+        <div class="box" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div class="t-sec">Template coverage</div>
+          <div class="t-sm">Required modules must be a subset of every offered template's supportedModules.</div>
+          <table class="tbl">
+            <tr><th>Template</th><th>priceList</th><th>team</th><th>portfolio</th></tr>
+            <tr><td class="b">Aurora</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td></tr>
+            <tr><td class="b">Najd</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="mut">&mdash;</td></tr>
+            <tr><td class="b">Wadi</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td></tr>
+            <tr><td class="b mut">Meridian</td><td class="flg">&#10007;</td><td class="mut">&mdash;</td><td class="mut">&mdash;</td></tr>
+          </table>
+          <div class="box" style="border-color:var(--flag);padding:9px">
+            <div class="t-sm flg">Meridian is hidden from this category, not broken by it. The same check runs in CI for every category &times; template pair.</div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div class="t-sec">Publishing this schema</div>
+          <div style="display:flex;justify-content:space-between"><span class="t-sm">Sites on v3</span><span class="b">7</span></div>
+          <div style="display:flex;justify-content:space-between"><span class="t-sm">Sites on v2</span><span class="b">2</span></div>
+          <hr class="hr">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;align-items:center;gap:7px"><span class="acc">&#10003;</span><span class="t-sm">No field removed &mdash; additive change</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span class="acc">&#10003;</span><span class="t-sm">Types regenerate on the next build</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span class="flg">&#9888;</span><span class="t-sm">2 sites need the migration job</span></div>
+          </div>
+          <div class="btn pri" style="height:42px">Publish &rarr; schemaVersion 4</div>
+          <div class="t-sm">Staging first. Never anywhere else.</div>
+        </div>
+
+        <div class="note">
+          This screen is the load-bearing one. Get it right and categories 5 through 45 are
+          configuration; rush it and you write bespoke code per category forever &mdash; the exact
+          outcome the whole design exists to prevent.
+          <div class="ref">&sect;12 phase 2</div>
+        </div>
+
+        <div class="note n" style="margin-top:auto">
+          The registry lives in the database, so a new category ships without a deploy. The trade-off is
+          losing compile-time types in the templates &mdash; bought back by generating them from the
+          registry and committing them.
+          <div class="ref">&sect;4.3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

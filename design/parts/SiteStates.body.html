@@ -1,0 +1,111 @@
+<div class="wf" style="width:900px;min-height:1020px;padding:26px 30px;display:flex;flex-direction:column;gap:18px">
+
+  <div>
+    <div class="t-screen">Two states the renderer must get right</div>
+    <div class="t-sm" style="margin-top:4px">Both are commercial decisions wearing a page layout.</div>
+  </div>
+
+  <div style="display:flex;gap:40px">
+
+    <!-- demo -->
+    <div style="width:390px;flex:none;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="t-sec">Demo site</span><span class="chip">isDemo: true</span>
+      </div>
+
+      <div class="box" style="padding:0;display:flex;flex-direction:column">
+        <div style="background:var(--flag);color:#fff;padding:9px 14px;display:flex;align-items:center;gap:9px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+          <div style="font-size:11px;line-height:1.3">
+            <div class="b">Sample site &mdash; not affiliated with this business</div>
+            <div style="opacity:.85">Built from public information. Expires in 18 days.</div>
+          </div>
+        </div>
+
+        <div style="height:52px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1.5px solid var(--line)">
+          <div class="ph" style="width:28px;height:28px;flex:none;font-size:8px">logo</div>
+          <div class="b" style="font-size:13px">Rawdah Cafe</div>
+        </div>
+
+        <div class="ph" style="height:180px;border:0;border-bottom:1.5px solid var(--line);flex-direction:column;
+                    align-items:stretch;justify-content:flex-end;padding:14px;gap:8px">
+          <div class="hand" style="font-size:20px;color:var(--ink);text-align:start;line-height:1.2">Specialty coffee, all day</div>
+          <div style="display:flex;gap:7px">
+            <div class="btn pri" style="flex-grow:1">Call</div>
+            <div class="btn" style="flex-grow:1;background:var(--card)">WhatsApp</div>
+          </div>
+        </div>
+
+        <div style="padding:14px;display:flex;flex-direction:column;gap:9px">
+          <div class="t-lbl">Menu</div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><div class="bar" style="width:54%"></div><div class="bar d" style="width:16%"></div></div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><div class="bar" style="width:46%"></div><div class="bar d" style="width:16%"></div></div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><div class="bar" style="width:60%"></div><div class="bar d" style="width:16%"></div></div>
+          <div class="t-sm" style="margin-top:4px">Facts are the lead's own. Images come from the licensed cafe pool.</div>
+        </div>
+
+        <div style="padding:12px 14px;background:var(--fill);display:flex;flex-wrap:wrap;gap:6px;border-top:1.5px solid var(--soft)">
+          <span class="chip sq">noindex</span><span class="chip sq">no logo used</span>
+          <span class="chip sq">no scraped photos</span><span class="chip sq">expires +30d</span>
+        </div>
+      </div>
+
+      <div class="note">
+        Never clone their logo and photos onto a live URL before they have paid &mdash; it is a
+        trademark exposure and it reads as creepy. Public facts plus stock imagery is also the only
+        version you can automate.
+        <div class="ref">&sect;1.3 &middot; &sect;8.4</div>
+      </div>
+    </div>
+
+    <!-- dunning -->
+    <div style="width:390px;flex:none;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="t-sec">Grace expired</span><span class="chip warn">HTTP 503</span>
+      </div>
+
+      <div class="box" style="padding:0;display:flex;flex-direction:column;min-height:392px">
+        <div style="flex-grow:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:34px 26px;text-align:center">
+          <div class="ph" style="width:52px;height:52px;border-radius:50%;flex:none">&nbsp;</div>
+          <div class="t-sec">This site is temporarily unavailable</div>
+          <div class="t-sm" style="line-height:1.6">
+            Rawdah Cafe is still open &mdash; the website is just paused.<br>
+            Call them on +966 11 &bull;&bull;&bull; &bull;&bull;&bull;&bull;.
+          </div>
+          <div class="btn tap" style="width:100%;max-width:230px">Call the business</div>
+          <div class="t-sm">Please check back soon.</div>
+        </div>
+        <div style="padding:11px 14px;background:var(--fill);border-top:1.5px solid var(--soft);display:flex;flex-wrap:wrap;gap:6px">
+          <span class="chip sq">503 + Retry-After</span><span class="chip sq">not a 404</span>
+          <span class="chip sq">rankings preserved</span><span class="chip sq">NAP still on the page</span>
+        </div>
+      </div>
+
+      <div class="box" style="padding:13px;display:flex;flex-direction:column;gap:9px">
+        <div class="t-lbl">The ladder behind this page</div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="b" style="width:46px;flex:none">day 0</span>
+          <div class="t-sm">Payment fails &rarr; PAST_DUE. Email and WhatsApp. Site stays up.</div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="b" style="width:46px;flex:none">1, 3, 5</span>
+          <div class="t-sm">Gateway retries.</div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="b flg" style="width:46px;flex:none">day 7</span>
+          <div class="t-sm flg">Grace ends &mdash; this page.</div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="b" style="width:46px;flex:none">day 30</span>
+          <div class="t-sm">CANCELED, unpublished, data retained 90 days.</div></div>
+        <div style="display:flex;gap:10px;align-items:flex-start"><span class="b" style="width:46px;flex:none">day 120</span>
+          <div class="t-sm">Hard delete.</div></div>
+      </div>
+
+      <div class="note" style="margin-top:auto">
+        A live 404 is what makes people rage-cancel &mdash; and it throws away the Google ranking that
+        was the reason they bought. Degrade, never disappear.
+        <div class="ref">&sect;8.3</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note n" style="margin-top:auto">
+    Both states are the same renderer and the same host resolution &mdash; only the published document's
+    status differs. Nothing is generated per customer at the code level, in any state.
+    <div class="ref">&sect;0 &middot; &sect;3</div>
+  </div>
+</div>

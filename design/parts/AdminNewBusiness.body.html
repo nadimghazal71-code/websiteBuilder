@@ -1,0 +1,153 @@
+<div class="wf" style="width:1440px;height:900px;display:flex;flex-direction:column">
+
+  <div class="top" style="background:var(--fill)">
+    <div class="mark hand">S</div>
+    <div class="b" style="font-size:13px">Admin console</div>
+    <div class="mut">/</div><div class="mut">Businesses</div><div class="mut">/</div><div>New</div>
+    <div style="flex-grow:1"></div>
+    <div class="chip on">2FA on</div>
+    <div class="t-sm">nadim &middot; SUPER_ADMIN</div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+
+    <div style="width:206px;flex:none;border-inline-end:1.5px solid var(--line);background:var(--card)">
+      <div class="nav">
+        <div class="i">Metrics</div>
+        <div class="i on">Businesses</div>
+        <div class="i">Leads</div>
+        <div class="i">Categories</div>
+        <div class="i">Templates</div>
+        <div class="i">Audit log</div>
+      </div>
+    </div>
+
+    <div style="flex-grow:1;min-width:0;padding:22px 26px;display:flex;gap:22px;min-height:0">
+
+      <!-- form -->
+      <div style="flex-grow:1;min-width:0;display:flex;flex-direction:column;gap:15px">
+        <div>
+          <div class="t-screen">New business</div>
+          <div class="t-sm" style="margin-top:4px">There is no public signup. You create the account; the owner gets an invite.</div>
+        </div>
+
+        <div class="box" style="padding:16px;display:flex;flex-direction:column;gap:13px">
+          <div class="t-lbl">The business</div>
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Name <span class="flg">*</span></div>
+              <div class="fld ok" style="color:var(--ink)">Rawdah Cafe</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Name in Arabic</div>
+              <div class="fld" style="color:var(--ink);direction:rtl">&#1605;&#1602;&#1607;&#1609; &#1575;&#1604;&#1585;&#1608;&#1590;&#1577;</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Category <span class="flg">*</span> <span class="mut">locks after first publish</span></div>
+              <div class="fld" style="color:var(--ink);justify-content:space-between">cafe &mdash; archetype A <span class="mut">&#9662;</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Language <span class="mut">sets dir</span></div>
+              <div style="display:flex;gap:7px;height:34px;align-items:center">
+                <span class="chip on">Arabic &middot; rtl</span><span class="chip">English &middot; ltr</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-lbl">Address on the web <span class="flg">*</span></div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <div style="display:flex;gap:0;align-items:stretch">
+              <div class="fld err" style="flex-grow:1;border-end-end-radius:0;border-start-end-radius:0">admin</div>
+              <div class="fld" style="background:var(--fill);border-inline-start:0;border-end-start-radius:0;border-start-start-radius:0">.sitelypages.com</div>
+            </div>
+            <div class="t-sm flg">&ldquo;admin&rdquo; is on the reserved list. Try something else.</div>
+            <div style="display:flex;gap:7px">
+              <span class="chip">rawdah-cafe</span><span class="chip">rawdah-riyadh</span><span class="chip">cafe-rawdah</span>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div class="t-lbl">The owner &mdash; gets the invite</div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Full name <span class="flg">*</span></div><div class="fld" style="color:var(--ink)">Saud Al-Rawdah</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Email <span class="flg">*</span></div><div class="fld" style="color:var(--ink)">saud@rawdah.example</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Phone</div><div class="fld" style="color:var(--ink)">+966 5&bull;&bull; &bull;&bull;&bull; &bull;&bull;&bull;</div>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Starting template</div>
+              <div class="fld" style="color:var(--ink);justify-content:space-between">Mishkat <span class="mut">&#9662;</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Starting palette</div>
+              <div class="fld" style="color:var(--ink);justify-content:space-between">Date Syrup <span class="mut">&#9662;</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div class="t-lbl">Came from lead</div>
+              <div class="fld" style="color:var(--ink);justify-content:space-between">#4471 Rawdah Cafe <span class="mut">&#9662;</span></div>
+            </div>
+          </div>
+          <div class="t-sm">Linking the lead seeds name, phone, address, geo and hours &mdash; and keeps the provenance.</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="btn pri" style="height:42px">Create and send invite</div>
+          <div class="btn gh" style="height:42px">Cancel</div>
+          <div class="t-sm" style="margin-inline-start:auto">Idempotency-Key sent &mdash; a double click cannot create two businesses.</div>
+        </div>
+      </div>
+
+      <!-- effects -->
+      <div style="width:400px;flex:none;display:flex;flex-direction:column;gap:13px">
+        <div class="box" style="padding:16px;display:flex;flex-direction:column;gap:11px">
+          <div class="t-sec">One transaction creates</div>
+          <div style="display:flex;gap:9px"><span class="acc b">1</span>
+            <div><div class="b">businesses</div><div class="t-sm">status AWAITING_PAYMENT, subdomain reserved</div></div></div>
+          <div style="display:flex;gap:9px"><span class="acc b">2</span>
+            <div><div class="b">users</div><div class="t-sm">role OWNER, status INVITED, no password yet</div></div></div>
+          <div style="display:flex;gap:9px"><span class="acc b">3</span>
+            <div><div class="b">sites &times; 2</div><div class="t-sm">DRAFT and PUBLISHED, seeded from the category defaults</div></div></div>
+          <div style="display:flex;gap:9px"><span class="acc b">4</span>
+            <div><div class="b">invite email</div><div class="t-sm">single-use link, 72 hours, hash stored not the token</div></div></div>
+        </div>
+
+        <div class="note">
+          Never email a generated password. The invite link is the only way in, and it dies on
+          first use.
+          <div class="ref">&sect;4.1 &middot; &sect;6.1</div>
+        </div>
+
+        <div class="box" style="padding:16px;display:flex;flex-direction:column;gap:9px">
+          <div class="t-sec">Reserved subdomains</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            <span class="chip">www</span><span class="chip">api</span><span class="chip">app</span><span class="chip warn">admin</span>
+            <span class="chip">mail</span><span class="chip">cdn</span><span class="chip">static</span><span class="chip">assets</span>
+            <span class="chip">blog</span><span class="chip">help</span><span class="chip">support</span><span class="chip">status</span>
+            <span class="chip">dev</span><span class="chip">staging</span><span class="chip">test</span><span class="chip">demo</span>
+            <span class="chip">dashboard</span><span class="chip">login</span><span class="chip">auth</span><span class="chip">billing</span>
+            <span class="chip">docs</span><span class="chip">new</span><span class="chip">id</span>
+          </div>
+        </div>
+
+        <div class="note n" style="margin-top:auto">
+          One wildcard record and one wildcard certificate cover every tenant, so a new customer is an
+          insert &mdash; never an infrastructure change. Custom domains stay modelled but switched off
+          until the publish pipeline is boring.
+          <div class="ref">&sect;3 option D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Kufi+Arabic:wght@400;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+/* Sitely wireframe kit — low-fi, paper + ink, one warm accent.
+   Shared by every artboard; inlined at build time by build.mjs. */
+
+:root{
+  --ink:#171614; --paper:#FBFAF6; --card:#FFFFFF;
+  --line:#C5C0B6; --soft:#DFDBD2; --fill:#EDEAE3;
+  --muted:#7C776E; --accent:#9A6636; --flag:#A44E3C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Space Mono','SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--flag)}
+.hand{font-family:'Architects Daughter','Comic Sans MS',cursive}
+
+/* frame + surfaces */
+.wf{min-height:100%;background:var(--paper);padding:0}
+.box{border:1.5px solid var(--line);background:var(--card)}
+.sk{border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.dash{border:1.5px dashed var(--line)}
+.hr{height:1.5px;background:var(--soft);border:0;margin:0}
+
+/* typography */
+.t-screen{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:26px;line-height:1.1}
+.t-sec{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:16px}
+.t-lbl{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.t-sm{font-size:11px;color:var(--muted)}
+.b{font-weight:700}
+.mut{color:var(--muted)}
+.acc{color:var(--accent)}
+.flg{color:var(--flag)}
+
+/* placeholder image — dashed box with a crossed-out fill */
+.ph{border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:10px;text-align:center;padding:4px;
+  background:
+    linear-gradient(to top right,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    linear-gradient(to top left,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    var(--fill)}
+/* grey bars standing in for body copy */
+.bar{height:8px;border-radius:4px;background:var(--fill)}
+.bar.d{background:var(--soft)}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 14px;border:1.5px solid var(--ink);background:var(--card);
+  color:var(--ink);font:inherit;font-size:11px;border-radius:3px;white-space:nowrap}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gh{border-color:var(--line);color:var(--muted)}
+.btn.dis{border-color:var(--soft);color:#B6B1A8;background:var(--fill)}
+.btn.sm{height:26px;padding:0 10px;font-size:10px}
+.btn.tap{height:46px;font-size:13px}
+.fld{border:1.5px solid var(--line);background:var(--card);height:34px;display:flex;align-items:center;
+  padding:0 10px;color:var(--muted);font-size:11px;border-radius:3px}
+.fld.ta{height:auto;min-height:58px;align-items:flex-start;padding:9px 10px}
+.fld.err{border-color:var(--flag);color:var(--flag)}
+.fld.ok{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border:1.5px solid var(--line);
+  border-radius:11px;font-size:10px;color:var(--muted);background:var(--card);white-space:nowrap}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.chip.sq{border-radius:3px}
+.chip.warn{border-color:var(--flag);color:var(--flag)}
+.tog{width:34px;height:18px;border:1.5px solid var(--line);border-radius:9px;background:var(--fill);
+  display:flex;align-items:center;padding:0 2px;flex:none}
+.tog i{width:12px;height:12px;border-radius:50%;background:var(--muted);display:block}
+.tog.on{border-color:var(--accent);background:var(--accent);justify-content:flex-end}
+.tog.on i{background:#fff}
+.rad{width:14px;height:14px;border:1.5px solid var(--line);border-radius:50%;flex:none}
+.rad.on{border-color:var(--accent);border-width:4px}
+
+/* app chrome */
+.top{height:52px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1.5px solid var(--line);background:var(--card)}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:6px;display:flex;
+  align-items:center;justify-content:center;font-size:13px;flex:none}
+.nav{display:flex;flex-direction:column;gap:2px;padding:14px 10px}
+.nav a,.nav div.i{display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:3px;
+  color:var(--muted);font-size:11px}
+.nav .i.on{background:var(--fill);color:var(--ink);font-weight:700}
+
+/* wizard step rail */
+.steps{display:flex;align-items:center;gap:0;padding:0 20px;height:44px;border-bottom:1.5px solid var(--soft);background:var(--paper)}
+.step{display:flex;align-items:center;gap:7px;padding:0 16px 0 0;color:var(--muted);font-size:11px}
+.step b{width:20px;height:20px;border:1.5px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:400;flex:none}
+.step.done b{border-color:var(--accent);color:var(--accent)}
+.step.now{color:var(--ink)}
+.step.now b{background:var(--ink);border-color:var(--ink);color:#fff}
+.step s{width:14px;height:1.5px;background:var(--soft);text-decoration:none;flex:none;margin-right:16px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{text-align:start;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:7px 10px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1.5px solid var(--soft);vertical-align:middle}
+
+/* callouts: pencilled notes tying the frame back to the kickoff doc */
+.note{border:1.5px solid var(--flag);border-left-width:4px;background:#FDF6F3;padding:9px 11px;
+  font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:13px;color:var(--flag);line-height:1.3}
+.note.n{border-color:var(--accent);border-left-color:var(--accent);background:#FAF5EF;color:var(--accent)}
+.ref{font-family:'Space Mono',monospace;font-size:10px;opacity:.8}
+
+/* Arabic face — every template ships RTL from the first line of CSS, never retrofitted */
+.ar{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+  </style>
+</helmet>
+<div class="wf" style="width:1440px;height:980px;display:flex;flex-direction:column">
+
+  <div class="top" style="background:var(--fill)">
+    <div class="mark hand">S</div>
+    <div class="b" style="font-size:13px">Admin console</div>
+    <div class="mut">/</div><div class="mut">Categories</div><div class="mut">/</div><div>barber</div>
+    <div style="flex-grow:1"></div>
+    <div class="chip sq">schemaVersion 3</div>
+    <div class="chip warn">unpublished changes</div>
+    <div class="t-sm">nadim &middot; SUPER_ADMIN</div>
+  </div>
+
+  <div style="flex-grow:1;display:flex;min-height:0">
+
+    <div style="width:206px;flex:none;border-inline-end:1.5px solid var(--line);background:var(--card)">
+      <div class="nav">
+        <div class="i">Metrics</div>
+        <div class="i">Businesses</div>
+        <div class="i">Leads</div>
+        <div class="i on">Categories</div>
+        <div class="i">Templates</div>
+        <div class="i">Audit log</div>
+      </div>
+      <hr class="hr" style="margin:6px 12px">
+      <div class="nav">
+        <div class="t-lbl" style="padding:4px 10px">Modules</div>
+        <div class="i">priceList</div>
+        <div class="i">menu</div>
+        <div class="i">showcase</div>
+        <div class="i">team</div>
+        <div class="i">portfolio</div>
+        <div class="i">schedule</div>
+        <div class="i">listings</div>
+        <div class="i">packages</div>
+        <div class="i">credentials</div>
+        <div class="i">coverage</div>
+      </div>
+    </div>
+
+    <div style="flex-grow:1;min-width:0;padding:20px 24px;display:flex;gap:20px;min-height:0">
+
+      <!-- manifest -->
+      <div style="flex-grow:1;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div class="t-screen">barber</div>
+          <div class="t-sm" style="margin-top:4px">A category is a manifest &mdash; which modules, what this trade calls them, what the defaults are.</div>
+        </div>
+
+        <div class="box" style="padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">key <span class="mut">immutable</span></div>
+            <div class="fld" style="background:var(--fill)">barber</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">name.en</div><div class="fld" style="color:var(--ink)">Barbershop</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">name.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1581;&#1604;&#1575;&#1602;</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <div class="t-lbl">archetype</div>
+            <div class="fld" style="color:var(--ink);justify-content:space-between">B &middot; service-led <span class="mut">&#9662;</span></div>
+          </div>
+        </div>
+
+        <div class="box" style="display:flex;flex-direction:column;flex-grow:1;min-height:0">
+          <div style="padding:12px 14px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;gap:10px">
+            <span class="t-sec">Modules</span>
+            <span class="t-sm">drag to reorder &mdash; order is the order on the site</span>
+          </div>
+
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">priceList</span><span class="chip on">required</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 1</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Services</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1575;&#1604;&#1582;&#1583;&#1605;&#1575;&#1578;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">team</span><span class="chip">optional &middot; off by default</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 2</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Our barbers</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.ar</div><div class="fld" style="color:var(--ink);direction:rtl">&#1575;&#1604;&#1581;&#1604;&#1575;&#1602;&#1608;&#1606;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="box" style="padding:11px;display:flex;gap:11px;align-items:flex-start">
+              <span class="mut" style="padding-top:3px">&#8942;&#8942;</span>
+              <div style="flex-grow:1;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:9px">
+                  <span class="b">portfolio</span><span class="chip">optional</span>
+                  <div style="flex-grow:1"></div><span class="t-sm">order 3</span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">labelOverride.en</div><div class="fld" style="color:var(--ink)">Before &amp; after</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <div class="t-lbl">config.mode</div>
+                    <div class="fld" style="color:var(--ink);justify-content:space-between">beforeAfter <span class="mut">&#9662;</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tog on" style="margin-top:3px"><i></i></div>
+            </div>
+
+            <div class="dash" style="padding:11px;display:flex;align-items:center;gap:9px;background:var(--fill)">
+              <span class="t-sm">Drag another module in &mdash;</span>
+              <span class="chip">packages</span><span class="chip">credentials</span><span class="chip">coverage</span>
+              <span class="chip">schedule</span><span class="chip">showcase</span>
+              <div style="flex-grow:1"></div>
+              <span class="t-sm">a category runs on 2&ndash;4</span>
+            </div>
+          </div>
+
+          <hr class="hr">
+
+          <div style="padding:12px 14px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span class="t-sec">extraFields</span><span class="t-sm">the small trade-specific bits</span>
+              <div style="flex-grow:1"></div><span class="btn sm gh">+ Field</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px">
+              <span class="chip sq">booking.mode <span class="mut">select</span></span>
+              <span class="chip sq">amenities <span class="mut">multi</span></span>
+              <span class="chip sq">kidsWelcome <span class="mut">boolean</span></span>
+            </div>
+            <div class="t-sm">Field types are a closed list. If a category wants something outside it, that is a product decision, not a quick add.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- compatibility + publish -->
+      <div style="width:404px;flex:none;display:flex;flex-direction:column;gap:13px">
+
+        <div class="box" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div class="t-sec">Template coverage</div>
+          <div class="t-sm">Required modules must be a subset of every offered template's supportedModules.</div>
+          <table class="tbl">
+            <tr><th>Template</th><th>priceList</th><th>team</th><th>portfolio</th></tr>
+            <tr><td class="b">Aurora</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td></tr>
+            <tr><td class="b">Najd</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="mut">&mdash;</td></tr>
+            <tr><td class="b">Wadi</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td><td class="acc">&#10003;</td></tr>
+            <tr><td class="b mut">Meridian</td><td class="flg">&#10007;</td><td class="mut">&mdash;</td><td class="mut">&mdash;</td></tr>
+          </table>
+          <div class="box" style="border-color:var(--flag);padding:9px">
+            <div class="t-sm flg">Meridian is hidden from this category, not broken by it. The same check runs in CI for every category &times; template pair.</div>
+          </div>
+        </div>
+
+        <div class="box" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+          <div class="t-sec">Publishing this schema</div>
+          <div style="display:flex;justify-content:space-between"><span class="t-sm">Sites on v3</span><span class="b">7</span></div>
+          <div style="display:flex;justify-content:space-between"><span class="t-sm">Sites on v2</span><span class="b">2</span></div>
+          <hr class="hr">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div style="display:flex;align-items:center;gap:7px"><span class="acc">&#10003;</span><span class="t-sm">No field removed &mdash; additive change</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span class="acc">&#10003;</span><span class="t-sm">Types regenerate on the next build</span></div>
+            <div style="display:flex;align-items:center;gap:7px"><span class="flg">&#9888;</span><span class="t-sm">2 sites need the migration job</span></div>
+          </div>
+          <div class="btn pri" style="height:42px">Publish &rarr; schemaVersion 4</div>
+          <div class="t-sm">Staging first. Never anywhere else.</div>
+        </div>
+
+        <div class="note">
+          This screen is the load-bearing one. Get it right and categories 5 through 45 are
+          configuration; rush it and you write bespoke code per category forever &mdash; the exact
+          outcome the whole design exists to prevent.
+          <div class="ref">&sect;12 phase 2</div>
+        </div>
+
+        <div class="note n" style="margin-top:auto">
+          The registry lives in the database, so a new category ships without a deploy. The trade-off is
+          losing compile-time types in the templates &mdash; bought back by generating them from the
+          registry and committing them.
+          <div class="ref">&sect;4.3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

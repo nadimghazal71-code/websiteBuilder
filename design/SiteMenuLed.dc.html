@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Noto+Kufi+Arabic:wght@400;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+/* Sitely wireframe kit — low-fi, paper + ink, one warm accent.
+   Shared by every artboard; inlined at build time by build.mjs. */
+
+:root{
+  --ink:#171614; --paper:#FBFAF6; --card:#FFFFFF;
+  --line:#C5C0B6; --soft:#DFDBD2; --fill:#EDEAE3;
+  --muted:#7C776E; --accent:#9A6636; --flag:#A44E3C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:'Space Mono','SFMono-Regular',Consolas,monospace;font-size:12px;line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--flag)}
+.hand{font-family:'Architects Daughter','Comic Sans MS',cursive}
+
+/* frame + surfaces */
+.wf{min-height:100%;background:var(--paper);padding:0}
+.box{border:1.5px solid var(--line);background:var(--card)}
+.sk{border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.dash{border:1.5px dashed var(--line)}
+.hr{height:1.5px;background:var(--soft);border:0;margin:0}
+
+/* typography */
+.t-screen{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:26px;line-height:1.1}
+.t-sec{font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:16px}
+.t-lbl{font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--muted)}
+.t-sm{font-size:11px;color:var(--muted)}
+.b{font-weight:700}
+.mut{color:var(--muted)}
+.acc{color:var(--accent)}
+.flg{color:var(--flag)}
+
+/* placeholder image — dashed box with a crossed-out fill */
+.ph{border:1.5px dashed var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:10px;text-align:center;padding:4px;
+  background:
+    linear-gradient(to top right,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    linear-gradient(to top left,transparent calc(50% - .7px),var(--soft) 50%,transparent calc(50% + .7px)),
+    var(--fill)}
+/* grey bars standing in for body copy */
+.bar{height:8px;border-radius:4px;background:var(--fill)}
+.bar.d{background:var(--soft)}
+
+/* controls */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  height:34px;padding:0 14px;border:1.5px solid var(--ink);background:var(--card);
+  color:var(--ink);font:inherit;font-size:11px;border-radius:3px;white-space:nowrap}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gh{border-color:var(--line);color:var(--muted)}
+.btn.dis{border-color:var(--soft);color:#B6B1A8;background:var(--fill)}
+.btn.sm{height:26px;padding:0 10px;font-size:10px}
+.btn.tap{height:46px;font-size:13px}
+.fld{border:1.5px solid var(--line);background:var(--card);height:34px;display:flex;align-items:center;
+  padding:0 10px;color:var(--muted);font-size:11px;border-radius:3px}
+.fld.ta{height:auto;min-height:58px;align-items:flex-start;padding:9px 10px}
+.fld.err{border-color:var(--flag);color:var(--flag)}
+.fld.ok{border-color:var(--accent)}
+.chip{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border:1.5px solid var(--line);
+  border-radius:11px;font-size:10px;color:var(--muted);background:var(--card);white-space:nowrap}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.chip.sq{border-radius:3px}
+.chip.warn{border-color:var(--flag);color:var(--flag)}
+.tog{width:34px;height:18px;border:1.5px solid var(--line);border-radius:9px;background:var(--fill);
+  display:flex;align-items:center;padding:0 2px;flex:none}
+.tog i{width:12px;height:12px;border-radius:50%;background:var(--muted);display:block}
+.tog.on{border-color:var(--accent);background:var(--accent);justify-content:flex-end}
+.tog.on i{background:#fff}
+.rad{width:14px;height:14px;border:1.5px solid var(--line);border-radius:50%;flex:none}
+.rad.on{border-color:var(--accent);border-width:4px}
+
+/* app chrome */
+.top{height:52px;display:flex;align-items:center;gap:14px;padding:0 20px;
+  border-bottom:1.5px solid var(--line);background:var(--card)}
+.mark{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:6px;display:flex;
+  align-items:center;justify-content:center;font-size:13px;flex:none}
+.nav{display:flex;flex-direction:column;gap:2px;padding:14px 10px}
+.nav a,.nav div.i{display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:3px;
+  color:var(--muted);font-size:11px}
+.nav .i.on{background:var(--fill);color:var(--ink);font-weight:700}
+
+/* wizard step rail */
+.steps{display:flex;align-items:center;gap:0;padding:0 20px;height:44px;border-bottom:1.5px solid var(--soft);background:var(--paper)}
+.step{display:flex;align-items:center;gap:7px;padding:0 16px 0 0;color:var(--muted);font-size:11px}
+.step b{width:20px;height:20px;border:1.5px solid var(--line);border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:10px;font-weight:400;flex:none}
+.step.done b{border-color:var(--accent);color:var(--accent)}
+.step.now{color:var(--ink)}
+.step.now b{background:var(--ink);border-color:var(--ink);color:#fff}
+.step s{width:14px;height:1.5px;background:var(--soft);text-decoration:none;flex:none;margin-right:16px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:11px}
+.tbl th{text-align:start;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding:7px 10px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1.5px solid var(--soft);vertical-align:middle}
+
+/* callouts: pencilled notes tying the frame back to the kickoff doc */
+.note{border:1.5px solid var(--flag);border-left-width:4px;background:#FDF6F3;padding:9px 11px;
+  font-family:'Architects Daughter','Comic Sans MS',cursive;font-size:13px;color:var(--flag);line-height:1.3}
+.note.n{border-color:var(--accent);border-left-color:var(--accent);background:#FAF5EF;color:var(--accent)}
+.ref{font-family:'Space Mono',monospace;font-size:10px;opacity:.8}
+
+/* Arabic face — every template ships RTL from the first line of CSS, never retrofitted */
+.ar{font-family:'Noto Kufi Arabic','Segoe UI',Tahoma,sans-serif}
+  </style>
+</helmet>
+<div class="wf ar" dir="rtl" lang="ar" style="width:390px;min-height:1980px;display:flex;flex-direction:column">
+
+  <div style="height:56px;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1.5px solid var(--line);background:var(--card)">
+    <div class="ph" style="width:30px;height:30px;flex:none;font-size:8px">شعار</div>
+    <div class="b" style="font-size:13px">مقهى الروضة</div>
+    <div style="flex-grow:1"></div>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </div>
+
+  <div class="ph" style="height:264px;border:0;border-bottom:1.5px solid var(--line);flex-direction:column;
+              align-items:stretch;justify-content:flex-end;padding:18px 16px;gap:10px">
+    <div class="ar" style="font-size:24px;color:var(--ink);line-height:1.3;text-align:start;font-weight:700">
+      قهوة مختصة في قلب الرياض
+    </div>
+    <div class="t-sm ar" style="text-align:start;color:var(--ink)">مفتوح من ٧ صباحًا حتى منتصف الليل</div>
+    <div style="display:flex;gap:8px">
+      <div class="btn pri tap ar" style="flex-grow:1">اتصل بنا</div>
+      <div class="btn tap ar" style="flex-grow:1;background:var(--card)">واتساب</div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1.5px solid var(--soft)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2l-5-4.9 6.9-1Z"/></svg>
+    <span class="b">٤٫٦</span><span class="t-sm ar">٤٠٢ تقييم على خرائط جوجل</span>
+  </div>
+
+  <!-- delivery: external links only, no orders taken here -->
+  <div style="padding:16px;display:flex;flex-direction:column;gap:10px;border-bottom:1.5px solid var(--soft)">
+    <div class="t-sec ar">التوصيل</div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+      <div class="btn ar" style="height:44px">هنقرستيشن</div>
+      <div class="btn ar" style="height:44px">جاهز</div>
+      <div class="btn ar" style="height:44px">طلبات</div>
+      <div class="btn ar" style="height:44px">كيتا</div>
+    </div>
+    <div class="t-sm ar">روابط خارجية — الطلب يتم على تطبيق التوصيل.</div>
+  </div>
+
+  <!-- menu module -->
+  <div style="padding:20px 16px;display:flex;flex-direction:column;gap:14px;border-bottom:1.5px solid var(--soft)">
+    <div class="t-sec ar">القائمة</div>
+
+    <div class="t-lbl ar">قهوة مختصة</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="ph" style="width:62px;height:62px;flex:none">صورة</div>
+        <div style="flex-grow:1;min-width:0">
+          <div class="b ar">في ٦٠</div>
+          <div class="t-sm ar">تحضير يدوي، حبوب إثيوبية فاتحة التحميص.</div>
+        </div>
+        <div style="flex:none" class="b ar">٢٤ ر.س</div>
+      </div>
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="ph" style="width:62px;height:62px;flex:none">صورة</div>
+        <div style="flex-grow:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:6px"><span class="b ar">سبانش لاتيه</span><span class="chip ar" style="height:18px;font-size:9px">الأكثر طلبًا</span></div>
+          <div class="t-sm ar">حليب مكثف وإسبريسو مزدوج.</div>
+        </div>
+        <div style="flex:none" class="b ar">٢٠ ر.س</div>
+      </div>
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="ph" style="width:62px;height:62px;flex:none">صورة</div>
+        <div style="flex-grow:1;min-width:0">
+          <div class="b ar">إسبريسو</div>
+          <div class="t-sm ar">جرعة مفردة أو مزدوجة.</div>
+        </div>
+        <div style="flex:none" class="b ar">١٢ ر.س</div>
+      </div>
+    </div>
+
+    <hr class="hr">
+    <div class="t-lbl ar">حلويات</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="ph" style="width:62px;height:62px;flex:none">صورة</div>
+        <div style="flex-grow:1;min-width:0">
+          <div class="b ar">كيك التمر</div>
+          <div class="t-sm ar">تمر سكري وقشدة، يُقدّم دافئًا.</div>
+        </div>
+        <div style="flex:none" class="b ar">٢٢ ر.س</div>
+      </div>
+      <div style="display:flex;gap:11px;align-items:flex-start">
+        <div class="ph" style="width:62px;height:62px;flex:none">صورة</div>
+        <div style="flex-grow:1;min-width:0">
+          <div class="b ar">كرواسون بالجبن</div>
+          <div class="t-sm ar">يُخبز كل صباح.</div>
+        </div>
+        <div style="flex:none" class="b ar">١٦ ر.س</div>
+      </div>
+    </div>
+    <div class="t-sm ar">الأسعار شاملة ضريبة القيمة المضافة ١٥٪.</div>
+  </div>
+
+  <!-- venue features (category extraFields) -->
+  <div style="padding:16px;display:flex;flex-direction:column;gap:10px;border-bottom:1.5px solid var(--soft)">
+    <div class="t-sec ar">المكان</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <span class="chip ar">واي فاي</span><span class="chip ar">جلسات خارجية</span>
+      <span class="chip ar">قسم عائلات</span><span class="chip ar">مناسب للدراسة</span><span class="chip ar">موقف سيارات</span>
+    </div>
+  </div>
+
+  <div style="padding:20px 16px;display:flex;flex-direction:column;gap:10px;border-bottom:1.5px solid var(--soft)">
+    <div style="display:flex;align-items:center;gap:9px">
+      <div class="t-sec ar">ساعات العمل</div><div style="flex-grow:1"></div><span class="chip on ar">مفتوح الآن</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7px" class="ar">
+      <div style="display:flex;justify-content:space-between"><span>السبت</span><span>٧:٠٠ — ٢٤:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span>الأحد</span><span>٧:٠٠ — ٢٤:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span>الاثنين</span><span>٧:٠٠ — ٢٤:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span>الثلاثاء</span><span>٧:٠٠ — ٢٤:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span>الأربعاء</span><span>٧:٠٠ — ٢٤:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span>الخميس</span><span>٧:٠٠ — ٠١:٠٠</span></div>
+      <div style="display:flex;justify-content:space-between"><span class="mut">الجمعة</span><span class="mut">١٤:٠٠ — ٢٤:٠٠</span></div>
+    </div>
+    <div class="box" style="border-color:var(--accent);padding:9px">
+      <div class="t-sm ar" style="color:var(--accent)">ساعات مختلفة خلال شهر رمضان — من بعد المغرب حتى ٣ فجرًا.</div>
+    </div>
+  </div>
+
+  <div style="padding:20px 16px;display:flex;flex-direction:column;gap:12px;border-bottom:1.5px solid var(--soft)">
+    <div class="t-sec ar">موقعنا</div>
+    <div class="ph" style="height:150px">خريطة</div>
+    <div style="display:flex;gap:9px;align-items:flex-start">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="ar"><div>طريق الأمير تركي، حي الروضة</div><div class="t-sm">الرياض ١٣٢١٣</div></div>
+    </div>
+    <div class="btn tap ar" style="width:100%">الاتجاهات</div>
+  </div>
+
+  <div style="padding:18px 16px;display:flex;flex-direction:column;gap:11px;background:var(--fill)">
+    <div style="display:flex;gap:9px">
+      <div class="box" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center">IG</div>
+      <div class="box" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center">TT</div>
+      <div class="box" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center">SC</div>
+    </div>
+    <div class="t-sm ar">© ٢٠٢٦ مقهى الروضة</div>
+  </div>
+
+  <div style="padding:10px 16px 8px;display:flex;flex-direction:column;gap:6px;border-top:2.5px solid var(--ink);background:var(--card)">
+    <div style="display:flex;gap:8px">
+      <div class="btn pri tap ar" style="flex-grow:1">اتصال</div>
+      <div class="btn tap ar" style="flex-grow:1">واتساب</div>
+      <div class="btn tap ar" style="flex-grow:1">الاتجاهات</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:7px"><span class="chip sq ar">ثابت</span><span class="t-sm ar">يبقى ظاهرًا طوال الصفحة</span></div>
+  </div>
+
+  <div style="padding:14px 16px;display:flex;flex-direction:column;gap:9px" dir="ltr">
+    <div class="note">
+      Same template, same JSON, <span class="ref">dir="rtl"</span>. Every offset is a logical property
+      from the first line of CSS &mdash; retrofitting RTL later is a rewrite of every template.
+      <div class="ref">&sect;5.10</div>
+    </div>
+    <div class="note n">
+      Arabic-Indic numerals are a per-site setting, and prices are where it shows. Font is a
+      self-hosted subset, never a blocking webfont request.
+      <div class="ref">&sect;5.10 &middot; &sect;9</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
